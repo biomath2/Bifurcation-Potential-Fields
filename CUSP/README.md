@@ -1,6 +1,6 @@
 # Cusp Normal Form (CUSP)
 
-This directory contains MATLAB scripts for generating the VB (Bifurcation Potential / resilience) fields associated with the **cusp normal form**, together with tools for overlaying bifurcation curves generated in MatCont.
+This directory contains MATLAB scripts for generating the VB (Bifurcation Potential / resilience) fields associated with the **unfolded cusp normal form**, together with tools for overlaying bifurcation curves generated in MatCont.
 
 The scripts reproduce the cusp VB fields presented in the Physica D paper:
 
@@ -46,7 +46,8 @@ or
 ```matlab
 cusp_make_vb("low","beta",[-0.5 1.5],"alpha",[-1.5 0.5],[350 350]);
 ```
-Note: in both the "high" and "low" cases, the final argument [350 350] generates a smooth publication grade VB field. Generating figures with this resolution can take hours to finish, however.  In exploratory work, it is often sufficient to use [50 50], which completes much more quickly.  
+Note: in both the "high" and "low" cases, the final argument [350 350] generates a smooth publication grade VB field. Generating figures with this resolution can take hours to finish for some models, however.  In exploratory work, it is often sufficient to use [50 50], which completes much more quickly.  
+
 ### Parameters Used in the Paper
 
 ```
@@ -81,12 +82,14 @@ After computing the fold (limit point) curves in MatCont:
 CUSP/mats/
 ```
 
+The curves used in the paper are currently in the mats directory
+
 2. Open the VB field figure in MATLAB.
 
 3. Run:
 
 ```matlab
-overlayBifurcationBoundary
+overlayBifurcationBoundary(args)
 ```
 
 The script automatically:
@@ -99,8 +102,6 @@ The script automatically:
 ```
 CUSP/figs/
 ```
-
-No manual copy-paste from MatCont is required.
 
 ---
 
