@@ -45,21 +45,23 @@ For each model, the repository allows a reader to:
    by running the model’s `*_make_vb.m` script over the parameter ranges used in the paper.
 
 2. **Overlay bifurcation boundaries**  
-   by placing the corresponding MatCont output files (`*.mat`) in the model’s `mats/` folder and running:
+   after confirming the corresponding MatCont output files (`*.mat`) exist in the model’s `mats/` folder run:
    ```matlab
-   overlayBifurcationBoundary
+   overlayBifurcationBoundary(args)
+   ```
+See the model-specific README for usage (e.g., details about args).
 
 The resulting composite figure (VB field + bifurcation curve) is saved automatically to the model’s figs/ directory.
 
-Inspect model-specific assumptions
 Each model’s folder is self-contained and documents (via code and configuration) which parameters are swept and how the VB metric is defined.
 
 What this repository does not provide
 
-Step-by-step instructions for generating bifurcation curves in MatCont’s GUI.
+-Step-by-step instructions for generating bifurcation curves in MatCont’s GUI.
 (MatCont is a mature, well-documented package; we assume basic familiarity. See the MatCont documentation and tutorials by its authors.)
 
-A general-purpose MatCont scripting interface.
+-A general-purpose MatCont scripting interface.
+
 Instead, we provide the actual MatCont output files used for the figures, together with a reproducible overlay mechanism.
 
 This choice reflects the workflow used in the published work and ensures fidelity to the figures as presented.
@@ -70,7 +72,7 @@ For a given model (e.g. unfolded saddle-node, SN/):
 
 1. Run the VB field script, e.g.
 
-sn_make_vb("high","a",[-1.5 0.5],"b",[-0.5 1.5],[50 50]);  % 50x50 grid, fast for testing, 350x350 grid, slow for publication
+sn_make_vb("high","a",[-1.5 0.5],"b",[-0.5 1.5],[50 50]);  % 50x50 grid, fast for testing, coarse resolution, 350x350 grid, slow for publication, high resolution
 
 2. Ensure the appropriate MatCont curve files (e.g. LP_LP(1).mat, LP_LP(2).mat) are present in:
 
@@ -78,7 +80,7 @@ SN/mats/
 
 3. With the VB field figure open, run:
 
-overlayBifurcationBoundary
+overlayBifurcationBoundary(args)
 
 4. The composite figure is saved automatically to:
 
